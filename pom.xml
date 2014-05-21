@@ -39,6 +39,42 @@
         </profile>
     </profiles>
 
+    <build>
+        <finalName>myBest</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/resources/${package.environment}</directory>
+                            <targetPath>WEB-INF/classes</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                        <resource>
+                            <directory>src/main/resources/${package.environment}</directory>
+                            <includes>
+                                <include>**/web.xml</include>
+                            </includes>
+                            <targetPath>WEB-INF</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>7.1.0.RC1</version>
+            </plugin>
+        </plugins>
+    </build>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -127,9 +163,5 @@
           <scope>compile</scope>
           <optional>false</optional>
       </dependency>
-
   </dependencies>
-  <build>
-    <finalName>myBest</finalName>
-  </build>
 </project>
