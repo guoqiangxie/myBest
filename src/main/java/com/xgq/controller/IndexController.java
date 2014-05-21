@@ -28,11 +28,6 @@ public class IndexController {
         paramUser.setName("1");
         paramUser.setPassword("1");
         User user = userService.selectUser(paramUser);
-        User user1 = new User();
-        user1.setId(3);
-        user1.setName("2");
-        user1.setPassword("2");
-        userService.insertUser(user1);
         return mv;
     }
 }
