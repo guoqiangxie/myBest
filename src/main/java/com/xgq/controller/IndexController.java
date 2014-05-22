@@ -23,11 +23,11 @@ public class IndexController {
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         ModelAndView mv = new ModelAndView("/index");
-        mv.addObject("name", name);
         User paramUser = new User();
         paramUser.setName("1");
         paramUser.setPassword("1");
         User user = userService.selectUser(paramUser);
+        mv.addObject("name", "用户ID："+user.getId()+" 名字：" + user.getName());
         return mv;
     }
 }
