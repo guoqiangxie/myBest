@@ -14,13 +14,14 @@
     <!-- 激活@Controller @Service 标签模式 -->
     <mvc:annotation-driven/>
 
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!-- 表示符合/*这样的模式才拦截 -->
-            <mvc:mapping path="/index" />
-            <bean class="com.xgq.interceptor.LoginInterceptor" />
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--<mvc:interceptors>-->
+        <!--&lt;!&ndash;增加登陆拦截器,一般登陆拦截使用servlet过滤器&ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 表示符合/*这样的模式才拦截 &ndash;&gt;-->
+            <!--<mvc:mapping path="/index" />-->
+            <!--<bean class="com.xgq.interceptor.LoginInterceptor" />-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
