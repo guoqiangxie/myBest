@@ -11,7 +11,7 @@
         <property name="locations">
             <list>
                 <value>classpath:jdbc.properties</value>
-                <!--<value>classpath:system.properties</value>-->
+                <value>classpath:system.properties</value>
             </list>
         </property>
     </bean>
@@ -60,13 +60,4 @@
         <aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.*(..))" order="0"/>
     </aop:config>
 
-    <!-- myBatis SQL map定义 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="jdbcDataSource"/>
-        <property name="configLocation" value="classpath:conf/mybatis-config.xml"></property>
-    </bean>
-    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.xgq.dao.UserMapper"></property>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-    </bean>
 </beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <import resource="classpath*:simplesm-context.xml" />
+
+    <bean class="com.google.code.ssm.Settings">
+        <property name="order" value="500" />
+    </bean>
+
+    <bean name="cacheManager" class="com.google.code.ssm.spring.SSMCacheManager">
+        <property name="caches">
+            <set>
+                <bean name="firstCache" id="firstCache" class="com.google.code.ssm.spring.SSMCache">
+                    <constructor-arg name="cache" index="0" ref="defaultCache" />
+                    <constructor-arg name="expiration" index="1" value="300" />
+                    <constructor-arg name="allowClear" index="2" value="false" />
+                </bean>
+            </set>
+        </property>
+    </bean>
+    <bean name="defaultCache" class="com.google.code.ssm.CacheFactory">
+        <property name="cacheName" value="default" />
+        <property name="cacheClientFactory">
+            <bean name="cacheClientFactory" class="com.google.code.ssm.providers.spymemcached.MemcacheClientFactoryImpl" />
+        </property>
+        <property name="addressProvider">
+            <bean class="com.google.code.ssm.config.DefaultAddressProvider">
+                <property name="address" value="${MEMCACHE_SERVER}" />
+            </bean>
+        </property>
+        <property name="configuration">
+            <bean class="com.google.code.ssm.providers.CacheConfiguration">
+                <property name="consistentHashing" value="true" />
+            </bean>
+        </property>
+    </bean>
+</beans>
