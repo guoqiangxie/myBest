@@ -46,6 +46,7 @@
         <url-pattern>index</url-pattern>
     </filter-mapping>
 
+    <!--重点注意，这里配置的页面不支持spring的国际化配置-->
     <welcome-file-list>
         <welcome-file>first.jsp</welcome-file>
     </welcome-file-list>

@@ -14,15 +14,6 @@
     <!-- 激活@Controller @Service 标签模式 -->
     <mvc:annotation-driven/>
 
-    <!--<mvc:interceptors>-->
-        <!--&lt;!&ndash;增加登陆拦截器,一般登陆拦截使用servlet过滤器&ndash;&gt;-->
-        <!--<mvc:interceptor>-->
-            <!--&lt;!&ndash; 表示符合/*这样的模式才拦截 &ndash;&gt;-->
-            <!--<mvc:mapping path="/index" />-->
-            <!--<bean class="com.xgq.interceptor.LoginInterceptor" />-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
-
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/img/**" location="/img/"/>
@@ -37,12 +28,35 @@
     <context:component-scan base-package="com.xgq.service"/>
 
 
-    <bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--JstlView使前端jsp支持jstl，如fmt等-->
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
+
+    <!--国际化配置开始-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+
+    <!--基于session的localeResolver，如果不配置，默认使用浏览器的locale-->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
+
+    <mvc:interceptors>
+        <!-- 国际化请求拦截器处理 -->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+
+        <!--增加登陆拦截器,一般登陆拦截使用servlet过滤器-->
+        <!--<mvc:interceptor>-->
+            <!-- 表示符合/*这样的模式才拦截 -->
+            <!--<mvc:mapping path="/index" />-->
+            <!--<bean class="com.xgq.interceptor.LoginInterceptor" />-->
+        <!--</mvc:interceptor>-->
+    </mvc:interceptors>
+    <!--国际化配置结束-->
 </beans>
