@@ -21,7 +21,8 @@ public class RestClient {
 
     public <T> T post(String url, Object data, Class<T> type) {
         ClientRequest request = clientRequest(url);
-        request.body(APPLICATION_XML, data);
+        request.accept(APPLICATION_JSON);
+        request.body(APPLICATION_JSON, data);
         ClientResponse<?> response = null;
         try {
             response = request.post();

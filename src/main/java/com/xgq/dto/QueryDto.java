@@ -4,12 +4,14 @@ package com.xgq.dto;
  * Created by xieguoqiang on 14-5-28.
  */
 
+import org.jboss.resteasy.annotations.providers.jaxb.json.BadgerFish;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import java.io.Serializable;
 
-
+@BadgerFish
 @XmlRootElement
 @XmlSeeAlso({QueryDucumentDto.class})
 public class QueryDto<T> implements Serializable {
