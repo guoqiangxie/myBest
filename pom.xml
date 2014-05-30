@@ -211,12 +211,6 @@
       </dependency>
 
       <dependency>
-          <groupId>org.jboss.resteasy</groupId>
-          <artifactId>resteasy-jackson-provider</artifactId>
-          <version>2.1.0.GA</version>
-      </dependency>
-
-      <dependency>
           <groupId>javax.ws.rs</groupId>
           <artifactId>jsr311-api</artifactId>
           <version>1.1.1</version>
