@@ -27,6 +27,12 @@
     <!--扫描service包-->
     <context:component-scan base-package="com.xgq.service"/>
 
+    <!--扫描restService包-->
+    <context:component-scan base-package="com.xgq.restService"/>
+
+    <!--扫描common包-->
+    <context:component-scan base-package="com.xgq.common"/>
+
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
 
