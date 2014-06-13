@@ -17,10 +17,10 @@ public class DocumentRestService {
     @Autowired
     private RestClient restClient;
 
-//    @Value(value = "${DOCUMENT_SERVER}")
-//    private String documentServer;
+    @Value(value = "${DOCUMENT_SERVER}")
+    private String documentServer;
 
     public ResultDto<DocumentDto> query(QueryDto<QueryDucumentDto> queryDto) {
-        return restClient.post("http://127.0.0.1:8081/resteasy" + "/document/query", queryDto, ResultDto.class);
+        return restClient.post(documentServer + "/document/query", queryDto, ResultDto.class);
     }
 }

@@ -33,6 +33,15 @@
     <!--扫描common包-->
     <context:component-scan base-package="com.xgq.common"/>
 
+    <!--springMVC相当于拥有2个容器，一个是servlet.xml文件，一个是applicationContext.xml文件，配置不共用，所有2个地方都得配置-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:system.properties</value>
+            </list>
+        </property>
+    </bean>
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
 
